@@ -39,6 +39,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Usage\DictionaryWithKeyStringMustSpecifyIComparer.cs" />
     <Compile Include="Usage\DontUseArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
