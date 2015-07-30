@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
+using AnalyzerSamples.Helpers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -46,7 +47,7 @@ namespace AnalyzerSamples.Comments
                         var commentText = node.ToString().Substring(2);
                         int index = 0;
 
-                        var list = GetContainingTriviaList(node, out index);
+                        var list = TriviaHelper.GetContainingTriviaList(node, out index);
                         bool isFirst = IsFirstComment(list, index);
                         bool isLast = IsLastComment(list, index);
 
@@ -61,20 +62,6 @@ namespace AnalyzerSamples.Comments
             }
         }
 
-        internal static SyntaxTriviaList GetContainingTriviaList(SyntaxTrivia trivia, out int triviaIndex)
-        {
-            var token = trivia.Token;
-            triviaIndex = token.TrailingTrivia.IndexOf(trivia);
-            if (triviaIndex != -1)
-            {
-                var nextToken = token.GetNextToken(includeZeroWidth: true);
-                return token.TrailingTrivia.AddRange(nextToken.LeadingTrivia);
-            }
-
-            var prevToken = token.GetPreviousToken();
-            triviaIndex = prevToken.TrailingTrivia.Count + token.LeadingTrivia.IndexOf(trivia);
-            return prevToken.TrailingTrivia.AddRange(token.LeadingTrivia);
-        }
 
         bool IsWhiteSpace(SyntaxTrivia triviaNode)
         {
@@ -89,7 +76,7 @@ namespace AnalyzerSamples.Comments
             }
         }
 
-        bool IsFirstComment(SyntaxTriviaList triviaList, int commentIndex)
+        bool IsFirstComment(IReadOnlyList<SyntaxTrivia> triviaList, int commentIndex)
         {
             for (var i = 0; i < commentIndex; i++)
             {
@@ -100,7 +87,7 @@ namespace AnalyzerSamples.Comments
             return true;
         }
 
-        bool IsLastComment(SyntaxTriviaList triviaList, int commentIndex)
+        bool IsLastComment(IReadOnlyList<SyntaxTrivia> triviaList , int commentIndex)
         {
             for (var i = commentIndex + 1; i < triviaList.Count - 1; i++)
             {
