@@ -17,8 +17,8 @@ namespace AnalyzerSamples.Comments
         public const string DiagnosticId = "EmptyCommentAnalyzer";
 
         // You can change these strings in the Resources.resx file. If you do not want your analyzer to be localize-able, you can use regular strings for Title and MessageFormat.
-        internal static readonly LocalizableString Title = "Comments Cannot be Empty";
-        internal static readonly LocalizableString MessageFormat = "Comment Cannot Be Empty";
+        public static readonly LocalizableString Title = "Comments Cannot be Empty";
+        public static readonly LocalizableString MessageFormat = "Comment Cannot Be Empty";
         internal static readonly LocalizableString Description = "No really, comments cannot be empty.";
         internal const string Category = "Naming";
 
