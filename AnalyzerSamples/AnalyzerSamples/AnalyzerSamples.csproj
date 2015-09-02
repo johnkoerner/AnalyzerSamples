@@ -46,6 +46,7 @@
     <Compile Include="Usage\DictionaryWithKeyStringMustSpecifyIComparer.cs" />
     <Compile Include="Usage\DoNotUseParamsAnalyzer.cs" />
     <Compile Include="Usage\DontUseArrayList.cs" />
+    <Compile Include="Usage\SealItUp.cs" />
     <Compile Include="VB\OptionExplicitAndOptionStrictShouldNotBeTurnedOff.cs" />
   </ItemGroup>
   <ItemGroup>
