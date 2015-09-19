@@ -81,6 +81,8 @@ namespace AnalyzerSamples.Comments
                 return new SyntaxTrivia();
             });
 
+            newRoot = newRoot.NormalizeWhitespace();
+
             Document updatedDocument = document.WithSyntaxRoot(newRoot);
             return updatedDocument;
         }

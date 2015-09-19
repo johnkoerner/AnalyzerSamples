@@ -35,6 +35,7 @@
     <Compile Include="Comments\EmptyCommentAnalyzer.cs" />
     <Compile Include="Comments\EmptyCommentCodeFix.cs" />
     <Compile Include="Comments\PublicMethodsMustBeDocumented.cs" />
+    <Compile Include="FileName\FileNameMustStartWithACapitalLetter.cs" />
     <Compile Include="Helpers\TriviaHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">

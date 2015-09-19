@@ -32,6 +32,10 @@ namespace AnalyzerSamples.Usage
                 if (node.Modifiers.Where(x => x.IsKind(SyntaxKind.StaticKeyword)).Any())
                     return;
 
+                // The class is already sealed, no reason to analyze it
+                if (node.Modifiers.Where(x => x.IsKind(SyntaxKind.SealedKeyword)).Any())
+                    return;
+
                 var methods = node.Members.Where(x => x.IsKind(SyntaxKind.MethodDeclaration));
                 var props = node.Members.Where(x => x.IsKind(SyntaxKind.PropertyDeclaration));
                 var events = node.Members.Where(x => x.IsKind(SyntaxKind.EventDeclaration));
@@ -71,11 +75,4 @@ namespace AnalyzerSamples.Usage
             } , SyntaxKind.ClassDeclaration);
         }
     }
-
-public abstract class C
-    {
-        public virtual string X { get; set; }
-
-    }
 }
-
